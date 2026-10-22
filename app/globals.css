@@ -1,0 +1,13 @@
+@import "./design.css";
+
+.hero-slide--team {
+  --slide-image: url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2200&q=85");
+}
+
+.hero-slide--roof {
+  --slide-image: url("https://images.unsplash.com/photo-1763665814538-8ba04597286c?auto=format&fit=crop&w=2200&q=85");
+}
+
+.hero-slide--materials {
+  --slide-image: url("https://images.unsplash.com/photo-1629608564457-5d74829a9e14?auto=format&fit=crop&w=2200&q=85");
+}

@@ -76,29 +76,31 @@ export default function Home() {
   }, [isPaused]);
 
   function changeSlide(direction: number) {
-    setActiveSlide((current) => (current + direction + slides.length) % slides.length);
+    setActiveSlide(
+      (current) => (current + direction + slides.length) % slides.length,
+    );
   }
 
   return (
     <>
       <div className="contact-bar">
         <div className="container contact-bar__inner">
-          <a href="mailto:info@nexora.com">
-            <span aria-hidden="true">✉</span> info@nexora.com
+          <a href="mailto:info@nexoratech.global">
+            <span aria-hidden="true">✉</span> info@nexoratech.global
           </a>
           <span className="contact-bar__phone">
-            <span aria-hidden="true">☎</span> 051
+            <span aria-hidden="true">☎</span> (+51) 994 748 870
           </span>
           <span className="contact-bar__address">
-            <span aria-hidden="true">⌖</span> Jr. Pasoldan 565, San Isidro
+            <span aria-hidden="true">⌖</span> Av. Mariategui 1030, Jesús María
           </span>
           <a
             className="contact-bar__web"
-            href="https://nexora.com"
+            href="https://nexoratech.global"
             target="_blank"
             rel="noreferrer"
           >
-            nexora.com <span aria-hidden="true">↗</span>
+            nexoratech.global <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
@@ -111,7 +113,11 @@ export default function Home() {
               alt="NEXORA TECH — Inversiones y Negocios CYA SAC"
             />
           </a>
-          <nav className="main-nav" id="main-navigation" aria-label="Estado del sitio">
+          <nav
+            className="main-nav"
+            id="main-navigation"
+            aria-label="Estado del sitio"
+          >
             {/* Menú temporalmente desactivado mientras el sitio está en construcción.
                 Reactiva estos enlaces cuando la empresa abra y las secciones vuelvan a mostrarse.
             <button
@@ -177,7 +183,11 @@ export default function Home() {
                   <p className="eyebrow eyebrow--light">
                     <span></span> {slide.eyebrow}
                   </p>
-                  {index === 0 ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
+                  {index === 0 ? (
+                    <h1>{slide.title}</h1>
+                  ) : (
+                    <h2>{slide.title}</h2>
+                  )}
                   <p className="hero-slide__description">{slide.description}</p>
                   {/* Reactiva las llamadas a servicios y contacto cuando el sitio esté listo.
                   <div className="hero-slide__actions">
@@ -191,7 +201,8 @@ export default function Home() {
                   */}
                 </div>
                 <div className="hero-slide__caption">
-                  <span>{String(index + 1).padStart(2, "0")}</span> {slide.caption}
+                  <span>{String(index + 1).padStart(2, "0")}</span>{" "}
+                  {slide.caption}
                 </div>
               </article>
             ))}
@@ -258,14 +269,14 @@ export default function Home() {
         <section className="trust-strip" aria-label="Nuestro compromiso">
           <div className="container trust-strip__inner">
             <p>
-              <span className="trust-strip__mark">✳</span> Construcción que inspira
-              confianza
+              <span className="trust-strip__mark">✳</span> Construcción que
+              inspira confianza
             </p>
             <span className="trust-strip__divider"></span>
             <p>
-              Personas primero <span className="trust-strip__dot">·</span> Calidad
-              siempre <span className="trust-strip__dot">·</span> Compromiso en cada
-              obra
+              Personas primero <span className="trust-strip__dot">·</span>{" "}
+              Calidad siempre <span className="trust-strip__dot">·</span>{" "}
+              Compromiso en cada obra
             </p>
           </div>
         </section>
@@ -297,13 +308,13 @@ export default function Home() {
               </h2>
               <p className="intro__lead">
                 Cada gran proyecto comienza con confianza. En NEXORA TECH unimos
-                experiencia, materiales de calidad y compromiso para acompañarte en
-                cada paso.
+                experiencia, materiales de calidad y compromiso para acompañarte
+                en cada paso.
               </p>
               <p className="intro__text">
-                Somos Inversiones y Negocios CYA SAC. Trabajamos cerca de nuestros
-                clientes para crear espacios seguros, funcionales y hechos para
-                durar.
+                Somos Inversiones y Negocios CYA SAC. Trabajamos cerca de
+                nuestros clientes para crear espacios seguros, funcionales y
+                hechos para durar.
               </p>
               <a className="text-link" href="#contacto">
                 Conversemos sobre tu proyecto <span aria-hidden="true">↗</span>
@@ -354,8 +365,8 @@ export default function Home() {
                 </div>
                 <h3>Construcción y remodelación</h3>
                 <p>
-                  Espacios residenciales y comerciales diseñados para acompañar tu
-                  vida y tu negocio.
+                  Espacios residenciales y comerciales diseñados para acompañar
+                  tu vida y tu negocio.
                 </p>
                 <a
                   href="#contacto"
@@ -371,8 +382,8 @@ export default function Home() {
                 </div>
                 <h3>Techos y estructuras</h3>
                 <p>
-                  Instalación y renovación de techos para cuidar tu hogar frente a
-                  cada temporada.
+                  Instalación y renovación de techos para cuidar tu hogar frente
+                  a cada temporada.
                 </p>
                 <a
                   href="#contacto"
@@ -388,10 +399,13 @@ export default function Home() {
                 </div>
                 <h3>Materiales de construcción</h3>
                 <p>
-                  Insumos esenciales y asesoría para que avances con los materiales
-                  adecuados.
+                  Insumos esenciales y asesoría para que avances con los
+                  materiales adecuados.
                 </p>
-                <a href="#materiales" aria-label="Ver materiales de construcción">
+                <a
+                  href="#materiales"
+                  aria-label="Ver materiales de construcción"
+                >
                   Conoce más <span aria-hidden="true">↗</span>
                 </a>
               </article>
@@ -451,7 +465,10 @@ export default function Home() {
                 algo <em>extraordinario?</em>
               </h2>
             </div>
-            <a className="button button--light" href="mailto:info@nexora.com">
+            <a
+              className="button button--light"
+              href="mailto:info@nexoratech.global"
+            >
               Cuéntanos tu idea <span aria-hidden="true">↗</span>
             </a>
             <span className="cta__shape" aria-hidden="true">
@@ -472,17 +489,17 @@ export default function Home() {
                 </h2>
               </div>
               <p>
-                Cuéntanos qué tienes en mente. Será un gusto ayudarte a encontrar
-                el próximo paso.
+                Cuéntanos qué tienes en mente. Será un gusto ayudarte a
+                encontrar el próximo paso.
               </p>
             </div>
             <div className="contact-grid">
-              <a className="contact-card" href="mailto:info@nexora.com">
+              <a className="contact-card" href="mailto:info@nexoratech.global">
                 <span className="contact-card__icon" aria-hidden="true">
                   ✉
                 </span>
                 <span className="contact-card__label">Escríbenos</span>
-                <strong>info@nexora.com</strong>
+                <strong>info@nexoratech.global</strong>
                 <span className="contact-card__arrow" aria-hidden="true">
                   ↗
                 </span>
@@ -492,7 +509,7 @@ export default function Home() {
                   ☎
                 </span>
                 <span className="contact-card__label">Llámanos</span>
-                <strong>051</strong>
+                <strong>(+51) 994 748 870</strong>
               </div>
               <div className="contact-card contact-card--address">
                 <span className="contact-card__icon" aria-hidden="true">
@@ -500,9 +517,9 @@ export default function Home() {
                 </span>
                 <span className="contact-card__label">Visítanos</span>
                 <strong>
-                  Jr. Pasoldan 565,
+                  Av. Mariategui 1030,
                   <br />
-                  San Isidro
+                  Jesús María
                 </strong>
                 <span className="contact-card__arrow" aria-hidden="true">
                   ⌖
@@ -510,7 +527,7 @@ export default function Home() {
               </div>
               <a
                 className="contact-card"
-                href="https://nexora.com"
+                href="https://leonxivminera.com"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -520,7 +537,7 @@ export default function Home() {
                 <span className="contact-card__label">
                   Redes sociales y sitio web
                 </span>
-                <strong>nexora.com</strong>
+                <strong>https://leonxivminera.com</strong>
                 <span className="contact-card__arrow" aria-hidden="true">
                   ↗
                 </span>
@@ -544,22 +561,26 @@ export default function Home() {
             <br />
             Hacemos crecer tus ideas.
           </p>
-          <a className="site-footer__email" href="mailto:info@nexora.com">
-            info@nexora.com <span aria-hidden="true">↗</span>
+          <a
+            className="site-footer__email"
+            href="mailto:info@nexoratech.global"
+          >
+            info@nexoratech.global <span aria-hidden="true">↗</span>
           </a>
           <a
             className="site-footer__social"
-            href="https://nexora.com"
+            href="https://leonxivminera.com"
             target="_blank"
             rel="noreferrer"
-            aria-label="Visita nexora.com"
+            aria-label="Visita leonxivminera.com"
           >
             Redes y web <span aria-hidden="true">↗</span>
           </a>
         </div>
         <div className="container site-footer__bottom">
           <span>
-            © {new Date().getFullYear()} NEXORA TECH · Inversiones y Negocios CYA SAC
+            © {new Date().getFullYear()} NEXORA TECH · Inversiones y Negocios
+            CYA SAC
           </span>
           <a href="#inicio">Volver arriba ↑</a>
         </div>

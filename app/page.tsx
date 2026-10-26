@@ -5,16 +5,15 @@ import { useEffect, useState } from "react";
 const slides = [
   {
     className: "hero-slide--team",
-    eyebrow: "Construcción con propósito",
+    eyebrow: "Barreras anti inundaciones",
     title: (
       <>
-        Construimos hoy
-        <br />
-        el lugar de <em>mañana.</em>
+        Actuemos ahora
+        <br />y no esperemos <em>mañana.</em>
       </>
     ),
     description:
-      "Soluciones confiables para construir, renovar y proteger lo que más importa.",
+      "Soluciones confiables para prevenir y proteger lo que más importa.",
     primaryText: "Conoce nuestros servicios",
     primaryHref: "#servicios",
     secondaryText: "Conócenos",
@@ -23,16 +22,16 @@ const slides = [
   },
   {
     className: "hero-slide--roof",
-    eyebrow: "Calidad que se ve",
+    eyebrow: "Geobolsas",
     title: (
       <>
-        Un buen techo.
+        Una buena barrera.
         <br />
-        Un hogar <em>protegido.</em>
+        Muchos hogares <em>protegidos.</em>
       </>
     ),
     description:
-      "Trabajamos cada detalle de tu proyecto, desde la estructura hasta el último acabado.",
+      "Trabajemos juntos para prevenir, hasta la última zona burnerable.",
     primaryText: "Hagamos tu proyecto",
     primaryHref: "#servicios",
     secondaryText: "Contáctanos",
@@ -41,16 +40,15 @@ const slides = [
   },
   {
     className: "hero-slide--materials",
-    eyebrow: "Materiales para avanzar",
+    eyebrow: "Mochilas de emergencia",
     title: (
       <>
-        La base correcta
+        La decisón correcta
         <br />
-        para una gran <em>obra.</em>
+        para una gran <em>azaña.</em>
       </>
     ),
-    description:
-      "Materiales seleccionados y asesoría cercana para cada etapa de la construcción.",
+    description: "Pueblo preparado valen por mil vidas.",
     primaryText: "Explora materiales",
     primaryHref: "#materiales",
     secondaryText: "Pide una cotización",
@@ -527,7 +525,7 @@ export default function Home() {
               </div>
               <a
                 className="contact-card"
-                href="https://leonxivminera.com"
+                href="https://nexoratech.global"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -537,7 +535,7 @@ export default function Home() {
                 <span className="contact-card__label">
                   Redes sociales y sitio web
                 </span>
-                <strong>https://leonxivminera.com</strong>
+                <strong>https://nexoratech.global</strong>
                 <span className="contact-card__arrow" aria-hidden="true">
                   ↗
                 </span>
@@ -569,10 +567,10 @@ export default function Home() {
           </a>
           <a
             className="site-footer__social"
-            href="https://leonxivminera.com"
+            href="https://nexoratech.global"
             target="_blank"
             rel="noreferrer"
-            aria-label="Visita leonxivminera.com"
+            aria-label="Visita nexoratech.global"
           >
             Redes y web <span aria-hidden="true">↗</span>
           </a>

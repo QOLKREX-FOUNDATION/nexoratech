@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="108" y1="40" x2="849" y2="623" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F8FA"/>
+      <stop offset="1" stop-color="#E5EAF0"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="499" y1="130" x2="718" y2="519" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#263443"/>
+      <stop offset="1" stop-color="#111C29"/>
+    </linearGradient>
+    <linearGradient id="solar" x1="60" y1="105" x2="385" y2="284" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#365C7B"/>
+      <stop offset="1" stop-color="#172F48"/>
+    </linearGradient>
+    <filter id="shadow" x="434" y="449" width="364" height="103" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="19"/>
+    </filter>
+  </defs>
+  <rect width="960" height="640" rx="28" fill="url(#bg)"/>
+  <path d="M0 488c175-50 328-40 463-4 176 47 320 33 497-22v178H0V488Z" fill="#D9E3E3"/>
+  <path d="M65 206 272 83l201 122-21 144H84L65 206Z" fill="#F1F4F5" stroke="#CBD5DB" stroke-width="7"/>
+  <path d="m98 203 174-103 165 101-12 118H112L98 203Z" fill="url(#solar)" stroke="#27455F" stroke-width="6"/>
+  <path d="m143 174 278 1m-292 43 284 1m-273 44 279 1M188 151l-5 168m72-205-6 205m75-164-5 164m75-121-4 121" stroke="#8CA8BB" stroke-opacity=".55" stroke-width="4"/>
+  <path d="m478 198 65-42 34 242h-77l-22-200Z" fill="#F9FBFC" stroke="#D5DDE1" stroke-width="7"/>
+  <path d="M511 233c0-37 30-67 67-67h113c37 0 67 30 67 67v245c0 32-26 58-58 58H569c-32 0-58-26-58-58V233Z" fill="url(#wall)" stroke="#101B27" stroke-width="8"/>
+  <path d="M544 220c0-19 15-34 34-34h109c19 0 34 15 34 34v12H544v-12Z" fill="#3E4C5A"/>
+  <path d="M552 271h185" stroke="#526372" stroke-width="4"/>
+  <path d="M645 295v95" stroke="#E7B34F" stroke-width="8" stroke-linecap="round"/>
+  <path d="m645 302-24 42h21l-10 39 33-48h-22l12-33Z" fill="#F1C56E"/>
+  <path d="M556 449h177" stroke="#344351" stroke-width="4"/>
+  <ellipse cx="646" cy="496" rx="142" ry="28" fill="#243241" fill-opacity=".21" filter="url(#shadow)"/>
+  <rect x="128" y="433" width="183" height="61" rx="12" fill="#F7F9F8" stroke="#C9D7D1" stroke-width="5"/>
+  <path d="M152 465h48m20 0h61" stroke="#77A78F" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="785" cy="104" r="49" fill="#fff" fill-opacity=".68"/>
+</svg>

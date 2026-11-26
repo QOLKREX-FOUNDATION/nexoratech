@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="52" y1="30" x2="888" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4F7FA"/>
+      <stop offset="1" stop-color="#E4EBF0"/>
+    </linearGradient>
+    <linearGradient id="block" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#46515C"/>
+      <stop offset="1" stop-color="#202A34"/>
+    </linearGradient>
+    <linearGradient id="water" x1="480" y1="390" x2="480" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7DB9C6"/>
+      <stop offset="1" stop-color="#D6E8EB"/>
+    </linearGradient>
+    <filter id="shadow" x="64" y="206" width="826" height="386" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="960" height="640" rx="28" fill="url(#bg)"/>
+  <path d="M0 400c128-19 234-9 356 14 156 29 289 25 404-7 74-21 137-23 200-13v246H0V400Z" fill="url(#water)"/>
+  <path d="m89 512 46-196 686-89 49 34-48 180-668 109-65-38Z" fill="#1C2932" fill-opacity=".22" filter="url(#shadow)"/>
+  <path d="m103 470 46-174 166-22 37 25-42 166-164 26-43-21Z" fill="url(#block)" stroke="#1D2730" stroke-width="5"/>
+  <path d="m315 437 42-167 166-22 39 25-39 161-167 26-41-23Z" fill="#3E4953" stroke="#222C35" stroke-width="5"/>
+  <path d="m527 402 40-158 166-22 39 26-37 153-169 25-39-24Z" fill="url(#block)" stroke="#1D2730" stroke-width="5"/>
+  <path d="m131 390 163-24m-144 75 166-26m49-73 164-24m-151 71 165-24m42-67 164-23m-149 70 166-23" stroke="#A8B3BB" stroke-opacity=".55" stroke-width="6" stroke-linecap="round"/>
+  <path d="m174 292 21 3-42 178-20-4 41-177Zm211-28 20 2-39 166-21 3 40-171Zm211-26 20 1-36 154-20 3 36-158Z" fill="#68747D" fill-opacity=".7"/>
+  <path d="M97 489c154-7 303-30 454-61 116-24 224-41 326-43" stroke="#EAF5F6" stroke-opacity=".55" stroke-width="7" stroke-linecap="round"/>
+  <path d="M0 551c145-19 249-10 389 14 145 24 264 21 393-8 71-16 122-19 178-13" stroke="#fff" stroke-opacity=".42" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="779" cy="120" r="47" fill="#fff" fill-opacity=".6"/>
+  <path d="M60 70h175" stroke="#CFD9DE" stroke-width="12" stroke-linecap="round"/>
+  <path d="M60 98h114" stroke="#CFD9DE" stroke-width="8" stroke-linecap="round"/>
+</svg>

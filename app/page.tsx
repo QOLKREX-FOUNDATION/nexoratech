@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ContactIcon } from "./components/icons";
+import { ProductShowcase, WhatsAppFloat } from "./components/products";
 
 const slides = [
   {
@@ -31,7 +33,7 @@ const slides = [
       </>
     ),
     description:
-      "Trabajemos juntos para prevenir, hasta la última zona burnerable.",
+      "Trabajemos juntos para prevenir, hasta la última zona Vulnerable.",
     primaryText: "Hagamos tu proyecto",
     primaryHref: "#servicios",
     secondaryText: "Contáctanos",
@@ -60,6 +62,7 @@ const slides = [
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (isPaused) {
@@ -73,10 +76,48 @@ export default function Home() {
     return () => window.clearInterval(timer);
   }, [isPaused]);
 
+  useEffect(() => {
+    const revealElements = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
+    );
+
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
+      revealElements.forEach((element) => element.classList.add("is-visible"));
+      return;
+    }
+
+    document.documentElement.classList.add("motion-ready");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -35px 0px" },
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("motion-ready");
+    };
+  }, []);
+
   function changeSlide(direction: number) {
     setActiveSlide(
       (current) => (current + direction + slides.length) % slides.length,
     );
+  }
+
+  function closeMenu() {
+    setIsMenuOpen(false);
   }
 
   return (
@@ -111,44 +152,55 @@ export default function Home() {
               alt="NEXORA TECH — Inversiones y Negocios CYA SAC"
             />
           </a>
-          <nav
-            className="main-nav"
-            id="main-navigation"
-            aria-label="Estado del sitio"
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={isMenuOpen}
+            aria-controls="main-navigation"
+            onClick={() => setIsMenuOpen((open) => !open)}
           >
-            {/* Menú temporalmente desactivado mientras el sitio está en construcción.
-                Reactiva estos enlaces cuando la empresa abra y las secciones vuelvan a mostrarse.
-            <button
-              className="menu-toggle"
-              type="button"
-              aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
-              aria-expanded={isMenuOpen}
-              aria-controls="main-navigation"
-              onClick={() => setIsMenuOpen((open) => !open)}
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav
+            className={`main-nav${isMenuOpen ? " is-open" : ""}`}
+            id="main-navigation"
+            aria-label="Navegación principal"
+          >
+            <a
+              className="main-nav__link is-active"
+              href="#inicio"
+              onClick={closeMenu}
             >
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-            <a className="main-nav__link is-active" href="#inicio" onClick={closeMenu}>
               Inicio
             </a>
             <a className="main-nav__link" href="#nosotros" onClick={closeMenu}>
               Nosotros
             </a>
-            <a className="main-nav__link" href="#servicios" onClick={closeMenu}>
-              Servicios
+            <a className="main-nav__link" href="#productos" onClick={closeMenu}>
+              Productos
             </a>
-            <a className="main-nav__link" href="#materiales" onClick={closeMenu}>
-              Materiales
+            <a
+              className="main-nav__link"
+              href="#kit-dengue"
+              onClick={closeMenu}
+            >
+              Kit Anti Dengue
             </a>
-            <a className="button button--nav" href="#contacto" onClick={closeMenu}>
+            <a
+              className="button button--nav"
+              href="#contacto"
+              onClick={closeMenu}
+            >
               Hablemos <span aria-hidden="true">↗</span>
             </a>
-            */}
+            {/* Aviso temporal de construcción: se conserva para poder reactivarlo.
             <span className="construction-badge">
               <span aria-hidden="true"></span> Web en construcción
             </span>
+            */}
           </nav>
         </div>
       </header>
@@ -187,16 +239,17 @@ export default function Home() {
                     <h2>{slide.title}</h2>
                   )}
                   <p className="hero-slide__description">{slide.description}</p>
-                  {/* Reactiva las llamadas a servicios y contacto cuando el sitio esté listo.
                   <div className="hero-slide__actions">
-                    <a className="button button--accent" href={slide.primaryHref}>
+                    <a
+                      className="button button--accent"
+                      href={slide.primaryHref}
+                    >
                       {slide.primaryText} <span aria-hidden="true">↗</span>
                     </a>
                     <a className="hero__text-link" href={slide.secondaryHref}>
                       {slide.secondaryText} <span aria-hidden="true">→</span>
                     </a>
                   </div>
-                  */}
                 </div>
                 <div className="hero-slide__caption">
                   <span>{String(index + 1).padStart(2, "0")}</span>{" "}
@@ -242,6 +295,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Vista temporal de construcción; se conserva para poder reactivarla.
         <section className="coming-soon" aria-labelledby="coming-soon-title">
           <div className="coming-soon__inner">
             <span className="coming-soon__mark" aria-hidden="true">
@@ -263,56 +317,61 @@ export default function Home() {
             </span>
           </div>
         </section>
+        */}
 
-        <section className="trust-strip" aria-label="Nuestro compromiso">
+        <section
+          className="trust-strip"
+          aria-label="Nuestro compromiso"
+          data-reveal
+        >
           <div className="container trust-strip__inner">
             <p>
-              <span className="trust-strip__mark">✳</span> Construcción que
+              <span className="trust-strip__mark">✳</span> Prevención que
               inspira confianza
             </p>
             <span className="trust-strip__divider"></span>
             <p>
               Personas primero <span className="trust-strip__dot">·</span>{" "}
-              Calidad siempre <span className="trust-strip__dot">·</span>{" "}
-              Compromiso en cada obra
+              Prevención siempre <span className="trust-strip__dot">·</span>{" "}
+              Compromiso en cada proyecto
             </p>
           </div>
         </section>
 
-        <section className="intro section-space" id="nosotros">
+        <section className="intro section-space" id="nosotros" data-reveal>
           <div className="container intro__grid">
             <div className="intro__visual">
               <img
-                src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1100&q=85"
-                alt="Equipo trabajando en una obra de construcción"
+                src="/products/barrera-antiinundacion.jpeg"
+                alt="Barrera modular de contención para protección ante inundaciones"
                 loading="lazy"
               />
               <div className="intro__badge">
-                <span>Construimos</span>
-                <strong>con confianza</strong>
+                <span>Prevenimos</span>
+                <strong>con soluciones</strong>
               </div>
               <div className="intro__visual-label">
-                <span>01</span> Personas que hacen realidad tus ideas
+                <span>01</span> Protección para cada proyecto
               </div>
             </div>
             <div className="intro__copy">
               <p className="eyebrow">
-                <span></span> Somos NEXORA TECH
+                <span></span> Equipamiento para gestión de riesgos
               </p>
               <h2>
                 Ideas firmes.
                 <br />
-                <em>Obras que perduran.</em>
+                <em>Protección que perdura.</em>
               </h2>
               <p className="intro__lead">
-                Cada gran proyecto comienza con confianza. En NEXORA TECH unimos
-                experiencia, materiales de calidad y compromiso para acompañarte
-                en cada paso.
+                En NEXORA TECH acercamos soluciones y equipos para la prevención
+                de riesgos, la protección de infraestructura y la continuidad de
+                tus operaciones.
               </p>
               <p className="intro__text">
-                Somos Inversiones y Negocios CYA SAC. Trabajamos cerca de
-                nuestros clientes para crear espacios seguros, funcionales y
-                hechos para durar.
+                Somos Inversiones y Negocios CYA SAC. Te acompañamos a evaluar
+                cada necesidad y encontrar el equipamiento adecuado para tu
+                proyecto.
               </p>
               <a className="text-link" href="#contacto">
                 Conversemos sobre tu proyecto <span aria-hidden="true">↗</span>
@@ -322,145 +381,33 @@ export default function Home() {
                   <span className="value-icon" aria-hidden="true">
                     ✳
                   </span>
-                  <strong>Trato cercano</strong>
-                  <span>Te acompañamos de principio a fin.</span>
+                  <strong>Asesoría cercana</strong>
+                  <span>Te orientamos según tus necesidades.</span>
                 </div>
                 <div>
                   <span className="value-icon" aria-hidden="true">
                     ⌂
                   </span>
-                  <strong>Calidad duradera</strong>
-                  <span>Elegimos soluciones hechas para durar.</span>
+                  <strong>Soluciones confiables</strong>
+                  <span>Equipos seleccionados para cada desafío.</span>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="services section-space" id="servicios">
-          <div className="container">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">
-                  <span></span> Lo que hacemos
-                </p>
-                <h2>
-                  Todo lo que tu obra
-                  <br />
-                  <em>necesita para crecer.</em>
-                </h2>
-              </div>
-              <p>
-                Desde la planificación hasta los acabados, ponemos atención y
-                experiencia en cada etapa de tu proyecto.
-              </p>
-            </div>
-            <div className="service-grid">
-              <article className="service-card">
-                <span className="service-card__number">01</span>
-                <div className="service-card__icon" aria-hidden="true">
-                  ⌂
-                </div>
-                <h3>Construcción y remodelación</h3>
-                <p>
-                  Espacios residenciales y comerciales diseñados para acompañar
-                  tu vida y tu negocio.
-                </p>
-                <a
-                  href="#contacto"
-                  aria-label="Consultar sobre construcción y remodelación"
-                >
-                  Conoce más <span aria-hidden="true">↗</span>
-                </a>
-              </article>
-              <article className="service-card service-card--featured">
-                <span className="service-card__number">02</span>
-                <div className="service-card__icon" aria-hidden="true">
-                  ⌁
-                </div>
-                <h3>Techos y estructuras</h3>
-                <p>
-                  Instalación y renovación de techos para cuidar tu hogar frente
-                  a cada temporada.
-                </p>
-                <a
-                  href="#contacto"
-                  aria-label="Consultar sobre techos y estructuras"
-                >
-                  Conoce más <span aria-hidden="true">↗</span>
-                </a>
-              </article>
-              <article className="service-card">
-                <span className="service-card__number">03</span>
-                <div className="service-card__icon" aria-hidden="true">
-                  ▧
-                </div>
-                <h3>Materiales de construcción</h3>
-                <p>
-                  Insumos esenciales y asesoría para que avances con los
-                  materiales adecuados.
-                </p>
-                <a
-                  href="#materiales"
-                  aria-label="Ver materiales de construcción"
-                >
-                  Conoce más <span aria-hidden="true">↗</span>
-                </a>
-              </article>
-            </div>
-          </div>
-        </section>
+        <ProductShowcase />
 
-        <section className="materials" id="materiales">
-          <div
-            className="materials__photo"
-            role="img"
-            aria-label="Materiales y herramientas para construcción"
-          ></div>
-          <div className="materials__content">
-            <p className="eyebrow eyebrow--light">
-              <span></span> Materiales para cada etapa
-            </p>
-            <h2>
-              La calidad de tu obra
-              <br />
-              empieza en sus <em>materiales.</em>
-            </h2>
-            <p>
-              Te ayudamos a encontrar lo necesario para construir con seguridad,
-              cuidar tu presupuesto y lograr un acabado del que te sientas
-              orgulloso.
-            </p>
-            <div className="materials__list">
-              <span>
-                <i aria-hidden="true">✓</i> Cemento y agregados
-              </span>
-              <span>
-                <i aria-hidden="true">✓</i> Ladrillos y bloques
-              </span>
-              <span>
-                <i aria-hidden="true">✓</i> Coberturas y techos
-              </span>
-              <span>
-                <i aria-hidden="true">✓</i> Acabados y herramientas
-              </span>
-            </div>
-            <a className="button button--accent" href="#contacto">
-              Consulta disponibilidad <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </section>
-
-        <section className="cta section-space">
+        <section className="cta section-space" data-reveal>
           <div className="container cta__inner">
             <div>
               <p className="eyebrow eyebrow--light">
                 <span></span> Tu proyecto empieza aquí
               </p>
               <h2>
-                ¿Listo para construir
+                ¿Listo para proteger
                 <br />
-                algo <em>extraordinario?</em>
+                lo que más <em>importa?</em>
               </h2>
             </div>
             <a
@@ -475,7 +422,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="contact section-space" id="contacto">
+        <section className="contact section-space" id="contacto" data-reveal>
           <div className="container">
             <div className="section-heading section-heading--contact">
               <div>
@@ -494,7 +441,7 @@ export default function Home() {
             <div className="contact-grid">
               <a className="contact-card" href="mailto:info@nexoratech.global">
                 <span className="contact-card__icon" aria-hidden="true">
-                  ✉
+                  <ContactIcon name="mail" />
                 </span>
                 <span className="contact-card__label">Escríbenos</span>
                 <strong>info@nexoratech.global</strong>
@@ -502,16 +449,19 @@ export default function Home() {
                   ↗
                 </span>
               </a>
-              <div className="contact-card">
+              <a className="contact-card" href="tel:+51994748870">
                 <span className="contact-card__icon" aria-hidden="true">
-                  ☎
+                  <ContactIcon name="phone" />
                 </span>
                 <span className="contact-card__label">Llámanos</span>
                 <strong>(+51) 994 748 870</strong>
-              </div>
+                <span className="contact-card__arrow" aria-hidden="true">
+                  ↗
+                </span>
+              </a>
               <div className="contact-card contact-card--address">
                 <span className="contact-card__icon" aria-hidden="true">
-                  ⌖
+                  <ContactIcon name="pin" />
                 </span>
                 <span className="contact-card__label">Visítanos</span>
                 <strong>
@@ -530,12 +480,10 @@ export default function Home() {
                 rel="noreferrer"
               >
                 <span className="contact-card__icon" aria-hidden="true">
-                  ↗
+                  <ContactIcon name="globe" />
                 </span>
-                <span className="contact-card__label">
-                  Redes sociales y sitio web
-                </span>
-                <strong>https://nexoratech.global</strong>
+                <span className="contact-card__label">Sitio web</span>
+                <strong>nexoratech.global</strong>
                 <span className="contact-card__arrow" aria-hidden="true">
                   ↗
                 </span>
@@ -547,42 +495,60 @@ export default function Home() {
 
       <footer className="site-footer">
         <div className="container site-footer__main">
-          <a
-            className="brand brand--footer"
-            href="#inicio"
-            aria-label="NEXORA TECH, volver al inicio"
+          <div className="site-footer__brand">
+            <a
+              className="brand brand--footer"
+              href="#inicio"
+              aria-label="NEXORA TECH, volver al inicio"
+            >
+              <img src="/logo-nexora2.jpeg" alt="NEXORA TECH" />
+            </a>
+            <p>
+              Soluciones para gestionar riesgos
+              <br />y proteger lo que importa.
+            </p>
+          </div>
+          <h2>
+            <em> Únicos en el Perú con stock</em>
+          </h2>
+          <div
+            className="site-footer__links"
+            aria-label="Información de contacto"
           >
-            <img src="/logo-nexora.jpeg" alt="NEXORA TECH" />
-          </a>
-          <p>
-            Construimos confianza.
-            <br />
-            Hacemos crecer tus ideas.
-          </p>
-          <a
-            className="site-footer__email"
-            href="mailto:info@nexoratech.global"
-          >
-            info@nexoratech.global <span aria-hidden="true">↗</span>
-          </a>
-          <a
-            className="site-footer__social"
-            href="https://nexoratech.global"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Visita nexoratech.global"
-          >
-            Redes y web <span aria-hidden="true">↗</span>
-          </a>
+            <a href="mailto:info@nexoratech.global">
+              <ContactIcon name="mail" />
+              <span>info@nexoratech.global</span>
+            </a>
+            <a href="tel:+51994748870">
+              <ContactIcon name="phone" />
+              <span>(+51) 994 748 870</span>
+            </a>
+            <a
+              href="https://maps.google.com/?q=Av.+Mariategui+1030,+Jes%C3%BAs+Mar%C3%ADa,+Lima,+Per%C3%BA"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <ContactIcon name="pin" />
+              <span>Av. Mariategui 1030, Jesús María</span>
+            </a>
+            <a
+              href="https://nexoratech.global"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <ContactIcon name="globe" />
+              <span>nexoratech.global</span>
+            </a>
+          </div>
         </div>
         <div className="container site-footer__bottom">
           <span>
-            © {new Date().getFullYear()} NEXORA TECH · Inversiones y Negocios
-            CYA SAC
+            © {new Date().getFullYear()} NEXORA TECH · Qolkrex Foundation
           </span>
           <a href="#inicio">Volver arriba ↑</a>
         </div>
       </footer>
+      <WhatsAppFloat />
     </>
   );
 }

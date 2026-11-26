@@ -3,9 +3,9 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nexoratech.global"),
-  title: "NEXORA TECH | Construcción, techos y materiales en Lima",
+  title: "NEXORA TECH | Equipamiento para gestión de riesgos",
   description:
-    "NEXORA TECH ofrece construcción y remodelación, techos, estructuras y materiales en Lima, Perú. Construimos contigo con calidad y confianza.",
+    "NEXORA TECH ofrece equipamiento para prevención de riesgos, protección de infraestructura y continuidad operativa en Perú.",
   alternates: {
     canonical: "/",
   },
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     locale: "es_PE",
     url: "https://nexoratech.global/",
     siteName: "NEXORA TECH",
-    title: "NEXORA TECH | Construcción, techos y materiales en Lima",
+    title: "NEXORA TECH | Equipamiento para gestión de riesgos",
     description:
-      "Construcción y remodelación, techos, estructuras y materiales en Lima, Perú. Construimos contigo con calidad y confianza.",
+      "Equipamiento para prevención de riesgos, protección de infraestructura y continuidad operativa en Perú.",
     images: [
       {
         url: "/logo-nexora.jpeg",
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "NEXORA TECH | Construcción, techos y materiales en Lima",
+    title: "NEXORA TECH | Equipamiento para gestión de riesgos",
     description:
-      "Construcción y remodelación, techos, estructuras y materiales en Lima, Perú.",
+      "Equipamiento para prevención de riesgos, protección de infraestructura y continuidad operativa en Perú.",
     images: ["/logo-nexora.jpeg"],
   },
   robots: {
@@ -66,7 +66,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "HomeAndConstructionBusiness",
+              "@type": "Organization",
               "@id": "https://nexoratech.global/#business",
               name: "NEXORA TECH",
               legalName: "Inversiones y Negocios CYA SAC",
@@ -74,7 +74,7 @@ export default function RootLayout({
               logo: "https://nexoratech.global/logo-nexora.jpeg",
               image: "https://nexoratech.global/logo-nexora.jpeg",
               description:
-                "Servicios de construcción y remodelación, techos, estructuras y materiales de construcción en Lima, Perú.",
+                "Equipamiento para prevención de riesgos, protección de infraestructura y continuidad operativa en Perú.",
               telephone: "+51994748870",
               email: "info@nexoratech.global",
               address: {

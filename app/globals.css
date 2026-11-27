@@ -1,11 +1,11 @@
 @import "./design.css";
 
 .hero-slide--team {
-  --slide-image: url("/products/barrera-antiinundacion.jpeg");
+  --slide-image: url("/products/geobolsas.jpeg");
 }
 
 .hero-slide--roof {
-  --slide-image: url("/products/geobolsas.jpeg");
+  --slide-image: url("/products/barrera-antiinundacion.jpeg");
 }
 
 .hero-slide--materials {
